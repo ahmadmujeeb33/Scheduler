@@ -1,12 +1,11 @@
 let body = $("body");
 let times = $(".times");
-let row = $(".row");
 
-row.addClass("saveBtn");
+// times.addClass('row hour');
 
-times.addClass("row");
+// times.addClass('hour textarea saveBtn');
 //times.addClass("saveBtn");
-times.addClass("hour");
+
 
 
 
