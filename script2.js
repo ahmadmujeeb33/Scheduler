@@ -1,12 +1,13 @@
 let textInfo = $(".textarea");
 let rowsOfData = $(".row");
+let dataOfRows = $(".row");
 
 let time = $(".hour");
 
 let infoOfEvents = {};
 let info;
 
-localStorage.clear();
+// localStorage.clear();
 
 
 rowsOfData.on('click','.saveBtn',function(event){
@@ -34,13 +35,17 @@ rowsOfData.on('click','.saveBtn',function(event){
 
 $(document).ready(function(){
     let values = JSON.parse(localStorage.getItem('values'));
-    // console.log(values);
-    time.each(function(index){
-        console.log("htisj " + $(this).text());
-        if(values.hasOwnProperty($(this).text())){
-            console.log("in this");
-        }
-    })
+
+    if(values!=null){
+        dataOfRows.each(function(index){
+            console.log("htisj " + $(this).siblings().eq(0).children().text());
+            // if(values.hasOwnProperty($(this).siblings().eq(0).text())){
+            //     console.log("hereeee")
+            //     $(this).siblings().eq(1).val(values[$(this).siblings().eq(0).text()]);
+            // }
+        })
+    }
+    
 })
 
   
