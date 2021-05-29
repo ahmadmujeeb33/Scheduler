@@ -38,11 +38,11 @@ $(document).ready(function(){
 
     if(values!=null){
         dataOfRows.each(function(index){
-            console.log("htisj " + $(this).siblings().eq(0).children().text());
-            // if(values.hasOwnProperty($(this).siblings().eq(0).text())){
-            //     console.log("hereeee")
-            //     $(this).siblings().eq(1).val(values[$(this).siblings().eq(0).text()]);
-            // }
+            console.log("htisj " + $(this).children().eq(0).text());
+            if(values.hasOwnProperty($(this).children().eq(0).text())){
+                console.log("hereeee")
+                $(this).children().eq(1).val(values[$(this).children().eq(0).text()]);
+            }
         })
     }
     
