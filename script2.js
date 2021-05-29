@@ -37,7 +37,7 @@ $(document).ready(function(){
     // console.log(values);
     time.each(function(index){
         console.log("htisj " + $(this).text());
-        if( $(this).text() in values){
+        if(values.hasOwnProperty($(this).text())){
             console.log("in this");
         }
     })
