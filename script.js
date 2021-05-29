@@ -8,33 +8,20 @@ $("#currentDay").text(today.format("dddd MMM Do"));
 
 let currentHour = today.format("h");
 let amOrpm = today.format("a");
-// console.log(" currentHour " + currentHour);
-// console.log(" amOrpm " + amOrpm);
-
 
 $(document).ready(function(){
     rows.each(function() {
         let timings = $(this).children().eq(0).children().eq(0).text();
         let hourOfDay;
         let clockPosition;
-
-        console.log("thidsindl");
-
         if(timings.length === 4){
             hourOfDay = timings.slice(0,2);
             clockPosition = timings.slice(2);
-
         }
         else{
             hourOfDay = timings.slice(0,1);
-            clockPosition = timings.slice(1);
-            // console.log("hourOfDay " + hourOfDay);
-            // console.log("currentHour " + currentHour);
-           
+            clockPosition = timings.slice(1);       
         }
-
-        console.log("hourofday " + hourOfDay);
-        console.log("clockPosition " + clockPosition);
 
         if((hourOfDay === currentHour) && (amOrpm === clockPosition)){
             $(this).children().eq(1).addClass("present");
@@ -55,12 +42,7 @@ $(document).ready(function(){
         }
         else if(hourOfDay === "12"){
             if(clockPosition === "am"){
-                if(amOrpm === "am"){
-                    $(this).children().eq(1).addClass("past");
-                }
-                else{
-                    $(this).children().eq(1).addClass("future");
-                }
+                $(this).children().eq(1).addClass("past");          
             }
             else{
                 if(amOrpm === "am"){
@@ -74,17 +56,16 @@ $(document).ready(function(){
         }
         else if(clockPosition === amOrpm){
             if(parseInt(hourOfDay) < parseInt(currentHour)){
-                console.log("indsn;dssdldf")
                 $(this).children().eq(1).addClass("past");
             }
-            else if(parseInt(hourOfDay) > parseInt(currentHour)){
+            else{
                 $(this).children().eq(1).addClass("future");
             }
             
         }
 
         else if(clockPosition !== amOrpm){
-            if(amOrpm == "pm"){
+            if(amOrpm === "pm"){
                 $(this).children().eq(1).addClass("past");
             }
             else{
@@ -95,14 +76,3 @@ $(document).ready(function(){
     });
 })
 
-// times.addClass('row hour');
-
-// times.addClass('hour textarea saveBtn');
-//times.addClass("saveBtn");
-
-
-
-
-
-
-// body.addClass("hour");
