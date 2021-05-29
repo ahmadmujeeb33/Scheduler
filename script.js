@@ -14,26 +14,81 @@ let amOrpm = today.format("a");
 
 $(document).ready(function(){
     rows.each(function() {
-        
+        let timings = $(this).children().eq(0).children().eq(0).text();
+        let hourOfDay;
+        let clockPosition;
 
-        if(currentHour.length === 2){
-            let timings = $(this).eq(0).eq(0).text();
-            let hourOfDay = timings.slice(0,2);
-            let clockPosition = timings.slice(2);
-            if(hourOfDay === currentHour){
-                $(this).addClass(present);
-            }
+        console.log("thidsindl");
+
+        if(timings.length === 4){
+            hourOfDay = timings.slice(0,2);
+            clockPosition = timings.slice(2);
+
         }
         else{
-            let timings = $(this).children().eq(0).children().eq(0).text();
-            console.log("timings " + timings);
-            let hourOfDay = timings.slice(0,1);
-            console.log("hourOfDay " + hourOfDay);
-            let clockPosition = timings.slice(1);
+            hourOfDay = timings.slice(0,1);
+            clockPosition = timings.slice(1);
             // console.log("hourOfDay " + hourOfDay);
             // console.log("currentHour " + currentHour);
-            if(hourOfDay === currentHour){
-                $(this).children().eq(1).addClass("present");
+           
+        }
+
+        console.log("hourofday " + hourOfDay);
+        console.log("clockPosition " + clockPosition);
+
+        if((hourOfDay === currentHour) && (amOrpm === clockPosition)){
+            $(this).children().eq(1).addClass("present");
+        }
+        else if(currentHour === "12"){
+            if(amOrpm === "am"){
+                $(this).children().eq(1).addClass("future");
+            }
+            else{
+                if(clockPosition === "pm"){
+                    $(this).children().eq(1).addClass("future");
+                }
+                else{
+                    $(this).children().eq(1).addClass("past");
+                }
+            }
+            
+        }
+        else if(hourOfDay === "12"){
+            if(clockPosition === "am"){
+                if(amOrpm === "am"){
+                    $(this).children().eq(1).addClass("past");
+                }
+                else{
+                    $(this).children().eq(1).addClass("future");
+                }
+            }
+            else{
+                if(amOrpm === "am"){
+                    $(this).children().eq(1).addClass("future");
+                }
+                else{
+                    $(this).children().eq(1).addClass("past");
+                }
+            }
+            
+        }
+        else if(clockPosition === amOrpm){
+            if(parseInt(hourOfDay) < parseInt(currentHour)){
+                console.log("indsn;dssdldf")
+                $(this).children().eq(1).addClass("past");
+            }
+            else if(parseInt(hourOfDay) > parseInt(currentHour)){
+                $(this).children().eq(1).addClass("future");
+            }
+            
+        }
+
+        else if(clockPosition !== amOrpm){
+            if(amOrpm == "pm"){
+                $(this).children().eq(1).addClass("past");
+            }
+            else{
+                $(this).children().eq(1).addClass("future");
             }
         }
         
